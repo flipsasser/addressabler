@@ -19,37 +19,16 @@ module Addressabler
   end
 
   module InstanceMethods
-    def self.included(base)
-      base.class_eval do
-        alias_method :original_query, :query
-        alias_method :query, :query_hash
-        alias_method :original_query=, :query=
-        alias_method :query=, :new_query=
-        alias_method :original_query_values=, :query_values=
-        alias_method :query_values=, :new_query_values=
-      end
-    end
-
     def domain
       @domain ||= parse_domain_parts[:domain]
     end
 
-    def new_query=(new_query)
-      self.original_query = new_query
-      @_original_query = true
-      @query_hash = Addressabler::Query[query_values(:notation => :flat) || {}]
-      @_original_query = false
-    end
-
     def query_hash
-      @_original_query ? original_query : @query_hash ||= Addressabler::Query.new
+      @query_hash ||= query_hash_for(query_values || {})
     end
 
-    def new_query_values=(new_query_values)
-      self.original_query_values = new_query_values
-      @_original_query = true
-      @query_hash = Addressabler::Query[query_values(:notation => :flat) || {}]
-      @_original_query = false
+    def query_hash=(new_query_hash)
+      @query_hash = query_hash_for(new_query_hash || {})
     end
 
     def subdomain
@@ -61,15 +40,21 @@ module Addressabler
     end
 
     private
+    def query_hash_for(contents)
+      hash = Addressabler::Query[contents]
+      hash.uri = self
+      hash
+    end
+
     def parse_domain_parts
-      return @_domain_parts if defined? @_domain_parts
+      return @domain_parts if defined? @domain_parts
       tld = self.class.parse_tld(host)
       begin
         subdomain_parts = host.gsub(/\.#{tld}$/, '').split('.')
       rescue
         raise host.inspect
       end
-      @_domain_parts = {
+      @domain_parts = {
         :domain => subdomain_parts.pop,
         :subdomain => subdomain_parts.join('.'),
         :tld => tld
@@ -91,8 +76,5 @@ module Addressabler
   TLDS = tlds
 end
 
-Addressable::URI.class_eval do
-  alias :original_query :query
-end
 Addressable::URI.extend Addressabler::ClassMethods
 Addressable::URI.send :include, Addressabler::InstanceMethods

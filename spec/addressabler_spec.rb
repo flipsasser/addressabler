@@ -23,14 +23,14 @@ describe Addressabler do
 
   it "should support adding keys to the query" do
     uri = Addressable::URI.parse("http://www.foo.bar.baz.co.uk/gjadgsg?adg=f")
-    uri.query.should == {'adg' => 'f'}
-    uri.query[:foo] = "bar"
+    uri.query_hash.should == {'adg' => 'f'}
+    uri.query_hash[:foo] = "bar"
     uri.to_s.should == "http://www.foo.bar.baz.co.uk/gjadgsg?adg=f&foo=bar"
   end
 
   it "should support adding nested values to the query" do
     uri = Addressable::URI.parse("http://www.amazon.ca")
-    uri.query[:foo] = {:bar => :baz}
+    uri.query_hash[:foo] = {:bar => :baz}
     uri.to_s.should == "http://www.amazon.ca?foo[bar]=baz"
   end
   
