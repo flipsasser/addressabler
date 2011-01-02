@@ -20,7 +20,11 @@ module Addressabler
 
   module InstanceMethods
     def domain
-      @domain ||= parse_domain_parts[:domain]
+      parse_domain_parts[:domain]
+    end
+
+    def domain=(new_domain)
+      self.host = "#{subdomain}.#{new_domain}.#{tld}"
     end
 
     def query_hash
@@ -32,11 +36,19 @@ module Addressabler
     end
 
     def subdomain
-      @subdomain ||= parse_domain_parts[:subdomain]
+      parse_domain_parts[:subdomain]
+    end
+
+    def subdomain=(new_subdomain)
+      self.host = "#{new_subdomain}.#{domain}.#{tld}"
     end
 
     def tld
-      @tld ||= parse_domain_parts[:tld]
+      self.class.parse_tld(host)
+    end
+
+    def tld=(new_tld)
+      self.host = "#{subdomain}.#{domain}.#{new_tld}"
     end
 
     private
@@ -47,8 +59,7 @@ module Addressabler
     end
 
     def parse_domain_parts
-      return @domain_parts if defined? @domain_parts
-      tld = self.class.parse_tld(host)
+      tld = self.tld
       begin
         subdomain_parts = host.gsub(/\.#{tld}$/, '').split('.')
       rescue

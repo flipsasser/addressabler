@@ -43,4 +43,33 @@ describe Addressabler do
     uri = Addressable::URI.heuristic_parse("i.am.a.subdomain.co.uk")
     uri.domain.should == "subdomain"
   end
+
+  it "should change stuff when the host changes" do
+    uri = Addressable::URI.heuristic_parse("www.google.com")
+    uri.tld.should == 'com'
+    uri.domain.should == 'google'
+    uri.subdomain.should == 'www'
+    uri.host = 'www2.google.co.uk'
+    uri.tld.should == 'co.uk'
+    uri.domain.should == 'google'
+    uri.subdomain.should == 'www2'
+  end
+
+  it "should let me change the subdomain" do
+    uri = Addressable::URI.heuristic_parse("www.google.com")
+    uri.subdomain = 'www2'
+    uri.to_s.should == 'http://www2.google.com'
+  end
+
+  it "should let me change the domain" do
+    uri = Addressable::URI.heuristic_parse("www.google.com")
+    uri.domain = 'amazon'
+    uri.to_s.should == 'http://www.amazon.com'
+  end
+
+  it "should let me change the tld" do
+    uri = Addressable::URI.heuristic_parse("www.google.com")
+    uri.tld = 'co.uk'
+    uri.to_s.should == 'http://www.google.co.uk'
+  end
 end
