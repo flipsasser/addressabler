@@ -72,4 +72,20 @@ describe Addressabler do
     uri.tld = 'co.uk'
     uri.to_s.should == 'http://www.google.co.uk'
   end
+
+  it "should handle things with no subdomain" do
+    uri = Addressable::URI.parse("http://google.com")
+    uri.host.should == "google.com"
+    uri.domain.should == "google"
+    uri.tld.should == "com"
+    uri.subdomain.should == ""
+  end
+
+  it "should handle empty strings" do
+    uri = Addressable::URI.parse("")
+    uri.host.should be_nil
+    uri.domain.should be_nil
+    uri.tld.should be_nil
+    uri.subdomain.should be_nil
+  end
 end

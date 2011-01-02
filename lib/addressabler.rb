@@ -20,6 +20,7 @@ module Addressabler
 
   module InstanceMethods
     def domain
+      return nil unless host
       parse_domain_parts[:domain]
     end
 
@@ -36,6 +37,7 @@ module Addressabler
     end
 
     def subdomain
+      return nil unless host
       parse_domain_parts[:subdomain]
     end
 
@@ -44,6 +46,7 @@ module Addressabler
     end
 
     def tld
+      return nil unless host
       self.class.parse_tld(host)
     end
 
@@ -60,11 +63,7 @@ module Addressabler
 
     def parse_domain_parts
       tld = self.tld
-      begin
-        subdomain_parts = host.gsub(/\.#{tld}$/, '').split('.')
-      rescue
-        raise host.inspect
-      end
+      subdomain_parts = host.to_s.gsub(/\.#{tld}$/, '').split('.')
       @domain_parts = {
         :domain => subdomain_parts.pop,
         :subdomain => subdomain_parts.join('.'),
