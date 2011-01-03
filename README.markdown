@@ -8,7 +8,7 @@ Install
 
 Install using Rubygems:
 
-	gem install addresabler
+	gem install addressabler
 
 Then:
 
