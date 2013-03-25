@@ -35,17 +35,11 @@ describe Addressabler do
     uri.to_s.should == "http://www.foo.bar.baz.co.uk/gjadgsg?adg=f&foo=bar"
   end
 
-  # TODO: This breaks due to a deprection in Addressable. This test
-  # was probably inappropriate to begin with, as it was testing something
-  # Addressable does, and not something Addressable*r* does.
-  #
-  # This would be a nice feature to have anyway, but alas ... some other
-  # time.
-  #it "should support adding nested values to the query" do
-    #uri = Addressable::URI.parse("http://www.amazon.ca")
-    #uri.query_hash[:foo] = {:bar => :baz}
-    #uri.to_s.should == "http://www.amazon.ca?foo[bar]=baz"
-  #end
+  it "should support adding nested values to the query" do
+    uri = Addressable::URI.parse("http://www.amazon.ca")
+    uri.query_hash[:foo] = {:bar => "baz", :sommat => [:else, 1, true, false]}
+    uri.to_s.should == "http://www.amazon.ca?foo[bar]=baz&foo[sommat][]=else&foo[sommat][]=1&foo[sommat][]=true&foo[sommat][]=false"
+  end
 
   it "should support subdomains" do
     uri = Addressable::URI.heuristic_parse("i.am.a.subdomain.co.uk")

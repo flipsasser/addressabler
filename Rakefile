@@ -1,6 +1,5 @@
-require 'rake'
-
 require "jeweler"
+
 Jeweler::Tasks.new do |gemspec|
   gemspec.name = "addressabler"
   gemspec.summary = "An Addressable::URI extension adding support for TLDs and query part editing"
