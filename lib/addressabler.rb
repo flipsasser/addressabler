@@ -75,7 +75,8 @@ module Addressabler
   # Thanks Domainatrix for the parsing logic!
   tlds = {}
   File.readlines(File.join(File.dirname(__FILE__), 'tlds')).each do |line|
-    unless !line.strip! == ''
+    line.strip!
+    unless line == '' || line =~ /^\//
       parts = line.split(".").reverse
       sub_hash = tlds
       parts.each do |part|
