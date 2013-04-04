@@ -2,12 +2,19 @@ require 'rubygems'
 require 'addressable/uri'
 require 'addressabler/query'
 
+module Addressable
+  class URI
+    class << self; attr_accessor :custom_tlds; end
+    @custom_tlds = {}
+  end
+end
+
 module Addressabler
   module ClassMethods
     def parse_tld(host)
       host = host.to_s.split('.')
       tlds = []
-      sub_hash = Addressabler::TLDS
+      sub_hash = Addressabler::TLDS.merge(@custom_tlds)
       while sub_hash = sub_hash[tld = host.pop]
         tlds.unshift(tld)
         if sub_hash.has_key? '*'
