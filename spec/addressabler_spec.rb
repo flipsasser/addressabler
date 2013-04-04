@@ -37,6 +37,12 @@ describe Addressabler do
       uri = Addressable::URI.parse("http://www.bart-blabla.foobar")
       uri.tld.should == 'foobar'
     end
+
+    it "accepts nested custom TLDs" do
+      Addressable::URI.custom_tlds = { 'bar' => { 'foo' => {} } }
+      uri = Addressable::URI.parse("http://www.bart-blabla.foo.bar")
+      uri.tld.should == 'foo.bar'
+    end
   end
 
   it "should support adding keys to the query" do
