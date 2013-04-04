@@ -26,6 +26,17 @@ describe Addressabler do
       uri = Addressable::URI.parse("http://www.bart-blabla.cc")
       uri.tld.should == 'cc'
     end
+
+    it "doesn't know non-existing TLDs" do
+      uri = Addressable::URI.parse("http://www.bart-blabla.foobar")
+      uri.tld.should == ''
+    end
+
+    it "accepts custom TLDs" do
+      Addressable::URI.custom_tlds = { 'foobar' => {} }
+      uri = Addressable::URI.parse("http://www.bart-blabla.foobar")
+      uri.tld.should == 'foobar'
+    end
   end
 
   it "should support adding keys to the query" do
