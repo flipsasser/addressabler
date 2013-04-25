@@ -1,19 +1,20 @@
 # Addressabler
 
-**Addressabler** extends the [Addressable::URI][] class by adding TLD parsing,
-domain and subdomain parsing, query modification, and restoring setting of
-nested hashes to query strings.
+**Addressabler** extends the
+[Addressable::URI](https://github.com/sporkmonger/addressable) class by adding
+TLD parsing, domain and subdomain parsing, query modification, and restoring
+setting of nested hashes to query strings.
 
 ## Install
 
 Install using Rubygems:
 
-	gem install addressabler
+  gem install addressabler
 
 Then:
 
-	require 'rubygems'
-	require 'addressabler'
+  require 'rubygems'
+  require 'addressabler'
 
 Addressabler will automatically require `addressable/uri`.
 
@@ -48,7 +49,8 @@ You can set these values, as well:
 ```
 
 #### Complex TLD support (thanks to Paul Dix!)
-Addressabler copies some of Paul Dix's [Domaintrix][] TLD code to support fancy
+Addressabler copies some of Paul Dix's
+[Domaintrix](https://github.com/pauldix/domainatrix) TLD code to support fancy
 TLDs, as well:
 
 ```ruby
@@ -79,8 +81,10 @@ editing query strings a lot simpler, using a familiar Hash syntax:
 
 #### Nested hashes in query strings
 
-The current maintainer of Addressable, [Bob Aman][], feels rather strongly that
-[Rails got it wrong][] in supporting nested hashes in query strings.
+The current maintainer of Addressable, [Bob
+Aman](https://github.com/sporkmonger), feels rather strongly that [Rails got it
+wrong](https://github.com/sporkmonger/addressable/issues/77) in supporting
+nested hashes in query strings.
 
 Frankly, I don't disagree with anything he has to say on the issue, but it is a
 problem many people have experienced.
@@ -95,17 +99,11 @@ it, you can assign a nested hash in the `query_hash=` method like so:
 @uri.to_s #=> "http://www.google.co.uk/?foo[bar]=baz"
 ```
 
-**HANDLE WITH CARE!** As [Bob explains in the discussion][], there's a better
-alternative to nested hashes in query strings, so try that before you install
-this library.
+**HANDLE WITH CARE!** As [Bob explains in the discussion]
+(https://github.com/sporkmonger/addressable/issues/77#issuecomment-8534480),
+there's a better alternative to nested hashes in query strings, so try that
+before you install this library.
 
 That's it. Enjoy.
 
 #### Copyright &copy; 2013 Flip Sasser
-
-
-[Addressable::URI]: https://github.com/sporkmonger/addressable
-[Domaintrix]: https://github.com/pauldix/domainatrix
-[Bob Aman]: https://github.com/sporkmonger
-[Rails got it wrong]: https://github.com/sporkmonger/addressable/issues/77
-[Bob explains in the discussion]: https://github.com/sporkmonger/addressable/issues/77#issuecomment-8534480
