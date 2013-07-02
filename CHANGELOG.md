@@ -1,3 +1,6 @@
+## 0.0.7
+* Updated to latest TLD list from [publicsuffix.org][]
+
 ## 0.0.6
 * Merged [pull request from Jean Mertz][] adding custom TLD support
 
@@ -9,3 +12,4 @@
 * Updated to latest Addressable spec
 
   [pull request from Jean Mertz]: https://github.com/flipsasser/addressabler/pull/2
+  [publicsuffix.org]: http://publicsuffix.org/
