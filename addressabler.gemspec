@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "addressabler"
-  s.version = "0.0.5"
+  s.version = "0.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Flip Sasser"]
-  s.date = "2013-03-25"
+  s.date = "2013-07-02"
   s.description = "\n    Addressabler extends the Addressable::URI class to provide information about, and manipulation of, specific parts of URI strings. It adds a `tld' method, a `domain' method,\n    and a `subdomain' method.\n\nIt also allows users to easily modify the URL's query values as a hash.\n  "
   s.email = "flip@x451.com"
   s.extra_rdoc_files = [
