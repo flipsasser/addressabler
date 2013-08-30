@@ -58,6 +58,16 @@ TLDs, as well:
 @uri.tld #=> "co.uk"
 ```
 
+#### Private / Public TLDs
+
+By default, Addressabler knows about ICANN public TLDs. There are, however, lots and lots of private TLDs that companies have registered. For example, as Dom Hodgson [points out](https://github.com/flipsasser/addressabler/issues/3), "blogspot.com" is a TLD by private, non-ICANN standards which are applied by the Mozilla foundation to the TLD list.
+
+As such, Addressabler defaults to parsing the ICANN public TLDS (`Addressabler.public_tlds`) but can easily be instructed to look at private TLDs like so:
+
+```ruby
+Addressabler.use_private_tlds = true
+```
+
 #### Custom TLDs
 You can specify custom TLDs - which aren't actually working TLD's on the
 internet - for internal usage. One example would be a custom development TLD:
