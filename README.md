@@ -63,7 +63,7 @@ You can specify custom TLDs - which aren't actually working TLD's on the
 internet - for internal usage. One example would be a custom development TLD:
 
 ```ruby
-Addressable::URI.custom_tlds = {
+Addressabler.custom_tlds = {
   'dev' => {},              # mydomain.dev
   'bar' => { 'foo' => {} }  # mydomain.foo.bar
 }
@@ -99,11 +99,18 @@ it, you can assign a nested hash in the `query_hash=` method like so:
 @uri.to_s #=> "http://www.google.co.uk/?foo[bar]=baz"
 ```
 
-**HANDLE WITH CARE!** As [Bob explains in the discussion]
-(https://github.com/sporkmonger/addressable/issues/77#issuecomment-8534480),
+**HANDLE WITH CARE!** As [Bob explains in the discussion](https://github.com/sporkmonger/addressable/issues/77#issuecomment-8534480),
 there's a better alternative to nested hashes in query strings, so try that
 before you install this library.
 
 That's it. Enjoy.
+
+## Contributors THANKS GUYS
+
+Super special thankses to
+
+* [Jean Mertz](https://github.com/jeanmertz) for the custom [TLD implementation](https://github.com/flipsasser/addressabler/pull/2)
+* [Paul Dix](https://github.com/pauldix) for the [Domainatrix](https://github.com/pauldix/domainatrix) parsing code
+* [Bob Aman](https://github.com/sporkmonger) for maintaining [Addressable](https://github.com/sporkmonger/addressable)
 
 #### Copyright &copy; 2013 Flip Sasser

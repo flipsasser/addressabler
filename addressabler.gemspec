@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "addressabler"
-  s.version = "0.0.7"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Flip Sasser"]
-  s.date = "2013-07-02"
+  s.date = "2013-08-30"
   s.description = "\n    Addressabler extends the Addressable::URI class to provide information about, and manipulation of, specific parts of URI strings. It adds a `tld' method, a `domain' method,\n    and a `subdomain' method.\n\nIt also allows users to easily modify the URL's query values as a hash.\n  "
   s.email = "flip@x451.com"
   s.extra_rdoc_files = [
@@ -21,30 +21,27 @@ Gem::Specification.new do |s|
     "LICENSE",
     "lib/addressabler.rb",
     "lib/addressabler/query.rb",
+    "lib/addressabler/uri.rb",
+    "lib/addressabler/uri_deprecation.rb",
     "lib/tlds"
   ]
   s.homepage = "http://github.com/flipsasser/addressabler"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.25"
+  s.required_ruby_version = Gem::Requirement.new("= 1.9.3")
+  s.rubygems_version = "2.0.3"
   s.summary = "An Addressable::URI extension adding support for TLDs and query part editing"
-  s.test_files = ["spec/addressabler_spec.rb", "spec/spec_helper.rb", "spec/uri_spec.rb"]
+  s.test_files = ["spec/addressable", "spec/addressable/idna_spec.rb", "spec/addressable/net_http_compat_spec.rb", "spec/addressable/template_spec.rb", "spec/addressable/uri_spec.rb", "spec/addressabler", "spec/addressabler/uri_deprecation_spec.rb", "spec/addressabler/uri_spec.rb", "spec/addressabler_spec.rb", "spec/spec_helper.rb"]
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<addressable>, [">= 0"])
-      s.add_development_dependency(%q<rspec>, [">= 2.0"])
-      s.add_runtime_dependency(%q<addressable>, [">= 2.2.2"])
+      s.add_runtime_dependency(%q<addressable>, [">= 2.3"])
     else
-      s.add_dependency(%q<addressable>, [">= 0"])
-      s.add_dependency(%q<rspec>, [">= 2.0"])
-      s.add_dependency(%q<addressable>, [">= 2.2.2"])
+      s.add_dependency(%q<addressable>, [">= 2.3"])
     end
   else
-    s.add_dependency(%q<addressable>, [">= 0"])
-    s.add_dependency(%q<rspec>, [">= 2.0"])
-    s.add_dependency(%q<addressable>, [">= 2.2.2"])
+    s.add_dependency(%q<addressable>, [">= 2.3"])
   end
 end
 

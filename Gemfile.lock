@@ -1,10 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.3)
+    addressable (2.3.5)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable
+  addressable (>= 2.3)

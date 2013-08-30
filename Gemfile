@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'addressable'
+gem 'addressable', '>= 2.3'
