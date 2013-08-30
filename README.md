@@ -7,14 +7,11 @@ setting of nested hashes to query strings.
 
 ## Install
 
-Install using Rubygems:
+Add Addressabler to your `Gemfile`:
 
-  gem install addressabler
-
-Then:
-
-  require 'rubygems'
-  require 'addressabler'
+```ruby
+gem "addressabler", ">= 0.1"
+```
 
 Addressabler will automatically require `addressable/uri`.
 
@@ -100,7 +97,7 @@ Frankly, I don't disagree with anything he has to say on the issue, but it is a
 problem many people have experienced.
 
 *As such,* since Rack already supports building nested hashes "the Rails Way"
-(shudder), I added support for assigning nested hashes to `URI`s **only if Rack
+(shudder), I added support for assigning nested hashes to `Addressable::URI`s **only if Rack
 is available.** Addressabler will attempt to load `Rack::Utils` and, if it finds
 it, you can assign a nested hash in the `query_hash=` method like so:
 
