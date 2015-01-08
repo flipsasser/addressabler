@@ -14,5 +14,5 @@ It also allows users to easily modify the URL's query values as a hash.
   gemspec.homepage = "http://github.com/flipsasser/addressabler"
   gemspec.authors = ["Flip Sasser"]
   gemspec.test_files = Dir["{spec}/**/*"]
-  gemspec.required_ruby_version = "1.9.3"
+  #gemspec.required_ruby_version = "1.9.3"
 end
