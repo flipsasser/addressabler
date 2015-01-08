@@ -16,3 +16,8 @@ It also allows users to easily modify the URL's query values as a hash.
   gemspec.test_files = Dir["{spec}/**/*"]
   #gemspec.required_ruby_version = "1.9.3"
 end
+
+desc "Update TLD list"
+task :update_tlds do
+  `curl https://publicsuffix.org/list/effective_tld_names.dat > lib/tlds`
+end
